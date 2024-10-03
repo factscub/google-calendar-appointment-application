@@ -1,0 +1,58 @@
+@import "../../../../../assets/scss/base";
+
+.calendar-month-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+
+  .week {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    .day {
+      background-color: white;
+      text-align: center;
+      padding: 5px 2px;
+      border: $light-border;
+
+      .circle {
+        margin: auto;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.today {
+          color: white;
+          background-color: $blue-color;
+        }
+      }
+    }
+  }
+}
+
+.appointments-list {
+  margin-top: 2px;
+  height: 75px;
+  overflow: auto;
+  display: block;
+}
+
+.appointment-box {
+  width: 100%;
+  border: none;
+  padding: 3px;
+  margin-bottom: 2px;
+  color: white;
+  text-align: start;
+  cursor: move;
+  background: $blue-color;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

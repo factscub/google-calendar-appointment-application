@@ -1,0 +1,23 @@
+@import "../../../../assets/scss/base";
+
+.calendar-view-dropdown-container {
+  ::ng-deep {
+    mat-form-field {
+      text-transform: capitalize !important;
+      width: 100px;
+      .mat-mdc-text-field-wrapper {
+        &,
+        &:hover {
+          margin-top: 10px;
+          background-color: transparent;
+          border: $light-border;
+        }
+        .mat-mdc-form-field-infix {
+          padding: 0;
+          min-height: auto;
+          height: 35px;
+        }
+      }
+    }
+  }
+}

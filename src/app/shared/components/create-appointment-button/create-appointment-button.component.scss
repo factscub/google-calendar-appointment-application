@@ -1,0 +1,14 @@
+.create-appointment-button {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  ::ng-deep {
+    .mdc-button__label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: black;
+    }
+  }
+}

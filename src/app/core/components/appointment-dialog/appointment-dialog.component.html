@@ -1,0 +1,108 @@
+<div class="appointment-drag-area">
+  <div class="appointment-container">
+    <div
+      class="appointment-card"
+      cdkDragBoundary=".appointment-drag-area"
+      cdkDrag
+      (cdkDragStarted)="onDragStart($event)"
+      (cdkDragMoved)="onDragMoved($event)"
+    >
+      <div class="appointment-header">
+        <mat-icon>drag_handle</mat-icon>
+        <div class="appointment-controls">
+          <button
+            *ngIf="isExistingAppointment"
+            mat-icon-button
+            class="delete-appointment"
+            (click)="deleteAppointment()"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button class="close-appointment" (click)="close()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="appointment-details">
+        <form [formGroup]="appointmentForm">
+          <div class="appointment-title-section">
+            <mat-form-field class="full-width">
+              <mat-label class="title-label">Add title</mat-label>
+              <input matInput class="title-input" formControlName="title" />
+              <mat-error
+                *ngIf="appointmentForm.controls['title'].hasError('required')"
+                >This field is required</mat-error
+              >
+            </mat-form-field>
+            <span class="appointment-type-label">Appointment</span>
+          </div>
+
+          <div class="appointment-time-section">
+            <div class="date-time-controls">
+              <mat-icon>schedule</mat-icon>
+              <div class="hide-date-picker">
+                <input
+                  matInput
+                  [matDatepicker]="dataPicker"
+                  formControlName="date"
+                />
+                <mat-datepicker #dataPicker></mat-datepicker>
+              </div>
+              <button
+                (click)="dataPicker.open()"
+                class="appointment-date"
+                type="button"
+              >
+                <span>{{
+                  appointmentForm.get("date")?.value | date : "cccc, d MMMM"
+                }}</span>
+              </button>
+              <div class="time-selectors">
+                <select id="startTime" formControlName="start">
+                  <option *ngFor="let time of timeIntervals" [value]="time">
+                    {{ time }}
+                  </option>
+                </select>
+                <span>&minus;</span>
+                <select id="endTime" formControlName="end">
+                  <option *ngFor="let time of timeIntervals" [value]="time">
+                    {{ time }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <p class="time-zone-info">Time zone &#x2022; Not repeated</p>
+            <div *ngIf="invalidTimeStamps">
+              <mat-error *ngIf="(invalidTimeStamps | async)?.timeMismatch">
+                Start time and End time cannot be the same.
+              </mat-error>
+              <mat-error *ngIf="(invalidTimeStamps | async)?.timeOrder">
+                End time should be after Start time.
+              </mat-error>
+            </div>
+            <p class="search-time">Search time</p>
+          </div>
+
+          <div class="appointment-description-section">
+            <mat-icon>sort</mat-icon>
+            <mat-form-field class="full-width">
+              <mat-label>Add description or attachments</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+              <mat-error
+                *ngIf="
+                  appointmentForm.controls['description'].hasError('required')
+                "
+                >This field is required</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <mat-card-footer>
+        <div class="appointment-action-buttons">
+          <button mat-flat-button (click)="saveChanges()">Save</button>
+        </div>
+      </mat-card-footer>
+    </div>
+  </div>
+</div>

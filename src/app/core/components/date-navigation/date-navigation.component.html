@@ -1,0 +1,18 @@
+<div class="date-navigation-container">
+  <button
+    class="today-button"
+    [matTooltip]="today | date : 'longDate'"
+    (click)="setCurrentDay()"
+  >
+    Today
+  </button>
+  <div class="date-change-buttons">
+    <button [matTooltip]="getTooltip('Previous')" (click)="changeDateView(-1)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button [matTooltip]="getTooltip('Next')" (click)="changeDateView(1)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+  <span class="date">{{ currentDate$ | async | date : "longDate" }}</span>
+</div>

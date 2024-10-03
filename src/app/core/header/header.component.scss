@@ -1,0 +1,28 @@
+@import "../../../assets/scss/base";
+
+header {
+  height: 65px;
+  border-bottom: $light-border;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  app-date-navigation {
+    margin-inline: 70px;
+  }
+
+  .icon-dropdown-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+    flex: 1;
+    margin-right: 50px;
+    mat-icon {
+      cursor: pointer;
+    }
+    app-calendar-view-dropdown {
+      margin-top: 10px;
+    }
+  }
+}

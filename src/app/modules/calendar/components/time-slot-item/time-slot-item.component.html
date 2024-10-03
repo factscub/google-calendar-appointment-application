@@ -1,0 +1,32 @@
+<div class="time-slot-item">
+  <div class="time-label">
+    <span>{{ timeSlotAppointments.plainTime }}</span>
+  </div>
+
+  <button
+    class="appointments-list"
+    cdkDropList
+    cdkDropListSortingDisabled
+    [cdkDropListData]="timeSlotAppointments.data"
+    (cdkDropListDropped)="onDrop($event, timeSlotAppointments.startTime)"
+    (click)="openNewDialog($event, timeSlotAppointments.startTime)"
+  >
+    <button
+      role="button"
+      class="appointment-box"
+      *ngFor="
+        let appointment of timeSlotAppointments.data;
+        trackBy: trackByAppointment
+      "
+      cdkDrag
+      [cdkDragData]="appointment"
+      (click)="openExistingDialog($event, appointment)"
+    >
+      <span>{{ appointment.title }}</span>
+      <div>
+        {{ formatToTimeString(appointment.start) }} &minus;
+        {{ formatToTimeString(appointment.end) }}
+      </div>
+    </button>
+  </button>
+</div>

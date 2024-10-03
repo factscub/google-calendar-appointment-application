@@ -1,0 +1,8 @@
+<mat-card class="inline-date-picker-container">
+  <mat-calendar
+    #inlineDatePicker
+    [selected]="currentDate"
+    (selectedChange)="onDateChanges($event)"
+  >
+  </mat-calendar>
+</mat-card>

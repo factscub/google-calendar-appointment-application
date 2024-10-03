@@ -1,0 +1,32 @@
+@import "../../../../assets/scss/base";
+
+.date-navigation-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  .today-button {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .date-change-buttons {
+    display: flex;
+    button {
+      border: none;
+      padding: 10px;
+      background: transparent;
+      border-radius: 50%;
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+  }
+
+  .date {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+}

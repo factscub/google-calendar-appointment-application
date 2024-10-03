@@ -1,0 +1,13 @@
+<div class="calendar-view-dropdown-container">
+  <mat-form-field>
+    <mat-select
+      matTooltip="Calendar view"
+      [value]="viewType$ | async"
+      (selectionChange)="calendarViewChange($event.value)"
+    >
+      <mat-option *ngFor="let viewType of calenderViewTypes" [value]="viewType">
+        {{ viewType }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -1,0 +1,23 @@
+<section class="page-loader-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</section>
+
+<ng-container *ngIf="!loading">
+  <ng-container *ngIf="headerComponent" [ngComponentOutlet]="headerComponent" />
+  <main>
+    <app-calendar-body-wrapper>
+      <!-- Content for the sidenav -->
+      <div sidenav-content>
+        <ng-container
+          *ngIf="sideNavComponent"
+          [ngComponentOutlet]="sideNavComponent"
+        />
+      </div>
+
+      <!-- Content for the body -->
+      <div body-content class="body-content">
+        <router-outlet />
+      </div>
+    </app-calendar-body-wrapper>
+  </main>
+</ng-container>

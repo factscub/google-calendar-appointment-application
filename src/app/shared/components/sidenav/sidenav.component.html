@@ -1,0 +1,7 @@
+<div class="sidenav-container">
+  <app-create-appointment-button (buttonClick)="openNewAppointmentDialog()" />
+  <app-inline-date-picker
+    *ngIf="currentDate$ | async as currentDate"
+    [currentDate]="currentDate"
+  />
+</div>

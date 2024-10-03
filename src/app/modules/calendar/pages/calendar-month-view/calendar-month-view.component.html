@@ -1,0 +1,42 @@
+<section class="calendar-month-view" cdkDropListGroup>
+  <div
+    class="week"
+    *ngFor="
+      let week of datesInSelectedMonth$ | async;
+      let idx = index;
+      trackBy: trackByWeek
+    "
+  >
+    <button
+      class="day"
+      *ngFor="let day of week; trackBy: trackBy"
+      (click)="openAppointmentDialog($event, day)"
+    >
+      <div *ngIf="appointments$ | async as appointments">
+        <p *ngIf="idx === 0">{{ day | date : "ccc" }}</p>
+        <p class="circle" [ngClass]="{ today: isToday(day) }">
+          {{ day ? (day | date : "d") : "" }}
+        </p>
+
+        <div
+          *ngIf="appointments[getDateKey(day)] || [] as appointments"
+          class="appointments-list"
+          cdkDropList
+          cdkDropListSortingDisabled
+          [cdkDropListData]="appointments"
+          (cdkDropListDropped)="dropAppointment($event, day)"
+        >
+          <button
+            *ngFor="let appointment of appointments; trackBy: trackBy"
+            class="appointment-box"
+            cdkDrag
+            [cdkDragData]="appointment"
+            (click)="openAppointmentDialog($event, day, appointment)"
+          >
+            {{ appointment.title }}
+          </button>
+        </div>
+      </div>
+    </button>
+  </div>
+</section>

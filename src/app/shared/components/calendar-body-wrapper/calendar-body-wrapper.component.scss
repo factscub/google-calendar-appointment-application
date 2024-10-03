@@ -1,0 +1,9 @@
+.sidenav-container {
+  height: calc(100vh - 65px);
+  #toggle-sidenav {
+    display: none;
+  }
+  .mat-drawer-opened {
+    width: 300px;
+  }
+}

@@ -1,0 +1,38 @@
+<section class="calendar-day-view">
+  <div class="calendar-day-header" *ngIf="currentDate$ | async as currentDate">
+    <div class="timezone-display">{{ today | date : "zzzz" }}</div>
+    <div
+      [ngClass]="isToday(currentDate) ? ' highlight' : ''"
+      class="current-date"
+    >
+      <div class="day-of-week">
+        {{ currentDate | date : "E" }}
+      </div>
+      <div class="day-number">
+        {{ currentDate | date : "d" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="time-slots-container">
+    <div
+      class="scrollable-time-slots"
+      *ngIf="dayAppointments$ | async as dayAppointments"
+    >
+      <div class="time-slot-items" cdkDropListGroup>
+        <app-time-slot-item
+          *ngFor="
+            let timeSlotAppointments of dayAppointments;
+            trackBy: trackByTimeSlot
+          "
+          [timeSlotAppointments]="timeSlotAppointments"
+          (dropEvent)="dropAppointment($event)"
+          (openNewAppointmentDialog)="openNewAppointmentDialog($event)"
+          (openExistingAppointmentDialog)="
+            openExistingAppointmentDialog($event)
+          "
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+@import "../../../../assets/scss/base";
+
+.header-logo-container {
+  &,
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .menu-icon {
+    box-sizing: unset;
+    padding: 12px;
+    border-radius: 50%;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
+  .logo {
+    mat-icon {
+      width: 45px;
+      height: 45px;
+      font-size: 45px;
+      margin-inline: 5px;
+    }
+    span {
+      font-size: 22px;
+    }
+  }
+}
